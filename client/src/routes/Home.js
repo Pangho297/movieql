@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import { gql, useQuery } from "@apollo/react-hooks";
 
 import Movie from "../components/Movie";
 
