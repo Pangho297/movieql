@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { gql, useMutation } from "@apollo/react-hooks";
 
 const LIKE_MOVIE = gql`
-  mutation likeMovie($id: Int) {
-    likeMovie(id: $id) @client
+  mutation likeMovie($id: Int, $isLiked: Boolean!) {
+    toggleLikeMovie(id: $id, isLiked: $isLiked) @client
   }
 `;
 
@@ -29,8 +29,8 @@ const Poster = styled.div`
 `;
 
 const Movie = ({ id, bg, isLiked }) => {
-  const [likeMovie] = useMutation(LIKE_MOVIE, {
-    variables: { id: parseInt(id) },
+  const [toggleLikeMovie] = useMutation(LIKE_MOVIE, {
+    variables: { id: parseInt(id), isLiked },
   });
 
   // useMutation을 이용해 변형을 이용할 수 있다.
@@ -40,9 +40,7 @@ const Movie = ({ id, bg, isLiked }) => {
       <Link to={`/${id}`}>
         <Poster bg={bg} />
       </Link>
-      <button onClick={isLiked ? null : likeMovie}>
-        {isLiked ? "UnLike" : "Like"}
-      </button>
+      <button onClick={toggleLikeMovie}>{isLiked ? "UnLike" : "Like"}</button>
     </Container>
   );
 };

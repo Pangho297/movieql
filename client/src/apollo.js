@@ -9,12 +9,11 @@ const client = new ApolloClient({
     // resolvers는 백엔드 또는 API에서 resolve하는 역활을 클라이언트에서 수행할 수 있게 해준다
     // 클라이언트에서 정의한 resolve는 클라이언트에서 Query를 요청할 수 있다.
     Mutation: {
-      likeMovie: (_, { id }, { cache }) => {
+      toggleLikeMovie: (_, { id, isLiked }, { cache }) => {
         cache.writeData({
           id: `Movie:${id}`,
           data: {
-            isLiked: true,
-            medium_cover_image: "",
+            isLiked: !isLiked,
           },
         });
       },
