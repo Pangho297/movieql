@@ -66,13 +66,15 @@ const Detail = () => {
   // 쿼리에 변수가 들어가게 된다면 useQuery()의 두번째 인자로 변수를 할당해주면 된다.
   // 위의 예제처럼 variables: { args }와 같이 넣으면 된다.
 
-  <Container>
-    <Column>
-      <Title>Name</Title>
-      <Subtitle>English · 4.5</Subtitle>
-      <Description>Lorem ipsum lalalla</Description>
-    </Column>
-  </Container>;
+  return (
+    <Container>
+      <Column>
+        <Title>Name</Title>
+        <Subtitle>English · 4.5</Subtitle>
+        <Description>Lorem ipsum lalalla</Description>
+      </Column>
+    </Container>
+  );
 };
 
 export default Detail;
