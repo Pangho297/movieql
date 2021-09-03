@@ -12,6 +12,10 @@ const GET_MOVIES = gql`
       rating
       description_full
     }
+    suggestions(id: $id) {
+      id
+      medium_cover_image
+    }
   }
 `;
 
@@ -67,21 +71,19 @@ const Detail = () => {
   // 위의 예제처럼 variables: { args }와 같이 넣으면 된다.
   // 주의해야할 점은 data를 바로 사용할 수 없고 존재하는지 확인하는 절차가 필요하다
 
+  console.log(data);
+
   return (
     <Container>
       <Column>
         <Title>{loading ? "Loading..." : data.movie.title}</Title>
-        {/* data가 존재하는지 확인하기 위해 Ternary Operator(삼항 연산자)를 사용해 만들면 쉽다.  */}
-        {!loading && data.movie && (
-          <>
-            <Subtitle>
-              {data.movie.language} · {data.movie.rating}
-            </Subtitle>
-            <Description>{data.movie.description_full}</Description>
-          </>
-        )}
+        <Subtitle>
+          {data?.movie?.language} · {data?.movie?.rating}
+        </Subtitle>
+        <Description>{data?.movie?.description_full}</Description>
       </Column>
-      <Poster bg={data && data.movie ? data.movie.medium_cover_image : ""} />
+      <Poster bg={data?.movie?.medium_cover_image} />
+      {/* data가 존재하는지 확인하기 위해 Optional Chaining를 사용해 만들면 쉽다.  */}
     </Container>
   );
 };

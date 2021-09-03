@@ -67,13 +67,11 @@ const Home = () => {
         <Subtitle>With GraphQL</Subtitle>
       </Header>
       {loading && <Loading>Loading...</Loading>}
-      {!loading && data.movies && (
-        <Movies>
-          {data.movies.map((item) => (
-            <Movie key={item.id} id={item.id} bg={item.medium_cover_image} />
-          ))}
-        </Movies>
-      )}
+      <Movies>
+        {data?.movies?.map((item) => (
+          <Movie key={item.id} id={item.id} bg={item.medium_cover_image} />
+        ))}
+      </Movies>
     </Container>
   );
 };
