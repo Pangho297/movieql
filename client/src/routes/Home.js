@@ -10,9 +10,12 @@ const GET_MOVIES = gql`
       id
       description_full
       medium_cover_image
+      isLiked @client
     }
   }
 `;
+
+// 여기서 isLiked는 클라이언트에서 정의한 reslovers이다
 
 const Container = styled.div`
   display: flex;
@@ -69,7 +72,12 @@ const Home = () => {
       {loading && <Loading>Loading...</Loading>}
       <Movies>
         {data?.movies?.map((item) => (
-          <Movie key={item.id} id={item.id} bg={item.medium_cover_image} />
+          <Movie
+            key={item.id}
+            id={item.id}
+            isLiked={item.isLiked}
+            bg={item.medium_cover_image}
+          />
         ))}
       </Movies>
     </Container>
