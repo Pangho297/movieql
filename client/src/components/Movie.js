@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  height: 400px;
+  height: 550px;
   border-radius: 7px;
   width: 100%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -18,10 +18,12 @@ const Poster = styled.div`
   border-radius: 7px;
 `;
 
-const Movie = ({ id }) => (
-  <div>
-    <Link to={`/${id}`}>{id}</Link>
-  </div>
+const Movie = ({ id, bg }) => (
+  <Container>
+    <Link to={`/${id}`}>
+      <Poster bg={bg} />
+    </Link>
+  </Container>
 );
 
 export default Movie;

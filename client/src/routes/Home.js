@@ -55,7 +55,7 @@ const Movies = styled.div`
   grid-gap: 25px;
   width: 60%;
   position: relative;
-  top: -50px;
+  margin: 25px 0px;
 `;
 
 const Home = () => {
@@ -67,9 +67,13 @@ const Home = () => {
         <Subtitle>With GraphQL</Subtitle>
       </Header>
       {loading && <Loading>Loading...</Loading>}
-      {!loading &&
-        data.movies &&
-        data.movies.map((item) => <Movie key={item.id} id={item.id} />)}
+      {!loading && data.movies && (
+        <Movies>
+          {data.movies.map((item) => (
+            <Movie key={item.id} id={item.id} bg={item.medium_cover_image} />
+          ))}
+        </Movies>
+      )}
     </Container>
   );
 };

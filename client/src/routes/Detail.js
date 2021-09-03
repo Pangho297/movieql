@@ -8,6 +8,8 @@ const GET_MOVIES = gql`
       id
       title
       medium_cover_image
+      language
+      rating
       description_full
     }
   }
@@ -15,6 +17,7 @@ const GET_MOVIES = gql`
 
 // 첫번째 줄(query getMovie($id: Int))은 Apollo를 위한 줄, 변수의 type을 검사하도록 돕는다
 // 나머지는 실제 query를 서버로 전송한다
+// 쿼리에 변수 없다면 첫번째 줄을 적을필요는없다.
 
 const Container = styled.div`
   height: 100vh;
@@ -63,12 +66,13 @@ const Detail = () => {
   // 쿼리에 변수가 들어가게 된다면 useQuery()의 두번째 인자로 변수를 할당해주면 된다.
   // 위의 예제처럼 variables: { args }와 같이 넣으면 된다.
 
-  if (loading) {
-    return "Loading...";
-  }
-  if (data && data.movie) {
-    return data.movie.title;
-  }
+  <Container>
+    <Column>
+      <Title>Name</Title>
+      <Subtitle>English · 4.5</Subtitle>
+      <Description>Lorem ipsum lalalla</Description>
+    </Column>
+  </Container>;
 };
 
 export default Detail;
