@@ -65,14 +65,23 @@ const Detail = () => {
 
   // 쿼리에 변수가 들어가게 된다면 useQuery()의 두번째 인자로 변수를 할당해주면 된다.
   // 위의 예제처럼 variables: { args }와 같이 넣으면 된다.
+  // 주의해야할 점은 data를 바로 사용할 수 없고 존재하는지 확인하는 절차가 필요하다
 
   return (
     <Container>
       <Column>
-        <Title>Name</Title>
-        <Subtitle>English · 4.5</Subtitle>
-        <Description>Lorem ipsum lalalla</Description>
+        <Title>{loading ? "Loading..." : data.movie.title}</Title>
+        {/* data가 존재하는지 확인하기 위해 Ternary Operator(삼항 연산자)를 사용해 만들면 쉽다.  */}
+        {!loading && data.movie && (
+          <>
+            <Subtitle>
+              {data.movie.language} · {data.movie.rating}
+            </Subtitle>
+            <Description>{data.movie.description_full}</Description>
+          </>
+        )}
       </Column>
+      <Poster bg={data && data.movie ? data.movie.medium_cover_image : ""} />
     </Container>
   );
 };
